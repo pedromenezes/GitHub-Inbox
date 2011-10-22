@@ -11,7 +11,7 @@
       var INTERVAL_BETWEEN_GET_UNREAD_TOTAL = 300000; // 5 mins in ms
 
       function extractUnreadMessages(response){
-        var matches = response.match(/Inbox \(<span class='js-inbox-count'>([^<]+)</);
+        var matches = response.match(/<span class="js-inbox-count">([^<]+)<\/span>/)
 
         if ((matches != null) && (matches.length == 2)) { 
           var unreadMessages = parseInt(matches[1]);
@@ -22,7 +22,7 @@
       }
 
       function extractUnreadNotifications(response){
-        var matches = response.match(/Notifications \(<span class='js-notification-count'>([^<]+)</);
+        var matches = response.match(/<span class="js-notification-count">([^<]+)<\/span>/);
 
         if ((matches != null) && (matches.length == 2)) { 
           var unreadNotifications = parseInt(matches[1]);
@@ -32,13 +32,14 @@
         return 0;
       }
 
-      function getUnreadTotal(text){
+      function getUnreadTotal(){
         var xhr = new XMLHttpRequest();
         var url = 'https://github.com/inbox';
 
         xhr.open("GET", url, true);
 
         xhr.onreadystatechange = function() {
+          debugger
           if (xhr.readyState == 4) {
             var response = xhr.response;
 
