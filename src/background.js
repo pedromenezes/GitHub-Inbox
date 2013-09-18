@@ -58,7 +58,7 @@ var GitHubNotifications = (function(){
 
           chrome.browserAction.setBadgeBackgroundColor({color: GitHubNotifications.BLUE});
 
-          if (settings.get("show-badge-even-with-zero-messages") == true) {
+          if (settings.get("show-badge-even-with-zero-messages")) {
             chrome.browserAction.setBadgeText({text: unreadNotifications});
           } else {
             if (unreadNotifications) {
