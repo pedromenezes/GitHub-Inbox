@@ -61,10 +61,10 @@ var GitHubNotifications = (function(){
           if (settings.get("show-badge-even-with-zero-messages")) {
             chrome.browserAction.setBadgeText({text: unreadNotifications});
           } else {
-            if (unreadNotifications) {
-              chrome.browserAction.setBadgeText({text: unreadNotifications});
-            } else {
+            if (unreadNotifications == "0") {
               chrome.browserAction.setBadgeText({text: ''});
+            } else {
+              chrome.browserAction.setBadgeText({text: unreadNotifications});
             }
           }
 
